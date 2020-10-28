@@ -1,0 +1,15 @@
+.noshow{
+    display: none
+}
+h3{
+    color: purple
+}
+#time{
+    color:rgb(48, 47, 47)
+}
+h1{
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: cornsilk;
+    margin: 10px;
+}
