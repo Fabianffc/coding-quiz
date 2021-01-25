@@ -1,11 +1,3 @@
-//  ```WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and score
 // GIVEN I am taking a code quiz
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
@@ -21,19 +13,23 @@
 var questionarray=[{
     title:"What is the basic piece in chess?", 
     choices:["pawn", "queen", "knight", "king"],
-    anwser:0
-},{
+    anwser: 0,
+},
+{
     title:"How many pieces are in total in chess?", 
     choices:["24", "16", "32", "34"],
-    anwser:3
-},{
-    title:"How many moves can the king move in total?", 
+    anwser: 2,
+},
+{
+    title:"How many squares can the king move at one time?", 
     choices:["3", "2", "1", "4"],
-    anwser:3  
-}
-
-
-]
+    anwser: 2,
+},
+{
+    title:"Wich piece in chess is the only animal ?", 
+    choices:["bear", "lion", "horse", "giraffe"],
+    anwser: 2,
+}]
 
 var timeleft= questionarray.length*15
 var stopid= ""
