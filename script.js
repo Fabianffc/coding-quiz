@@ -52,12 +52,14 @@ startGame = () => {
     availableQuestions = [...questions];
     getNewQuestion()
 }
+
 //switch between questions
 getNewQuestion = () => {
-    if (availableQuestions.length === 0 || questionCounter > maxQuestions){
+    if (availableQuestions.length === 0 || questionCounter >> maxQuestions) {
         //go to the final page
         return window.location.assign("/final.html");
     }
+
     questionCounter++;
     const questionIndex = Math.floor(Math.random() * availableQuestions.length)
     currentQuestion = availableQuestions[questionIndex];
@@ -66,27 +68,31 @@ getNewQuestion = () => {
     choices.forEach(choice => {
         const number = choice.dataset["number"]
         choice.innerText = currentQuestion["choice" + number]
-    })
+    });
+
     availableQuestions.splice(questionIndex, 1);
     acceptAnswer = true;
-}
-     //loop between each choice
+};
+
+
+//loop between each choice
 choices.forEach(choice => {
-     //listen when each choice is click then get the number reference 
-
     choice.addEventListener("click", event => {
-        if (!acceptAnswer) {
-            return;
+        if (!acceptAnswer) return;
 
-            acceptAnswer = false;
-            const selectedChoice = event.target;
-            console.log(selectedChoice);
-            const selectedAnswer = selectedChoice.dataset["number"]
-            console.log(selectedAnswer);
-      //calling the getNewQuestion function to switch between questions
-        } getNewQuestion()
-    })
-})
+        acceptAnswer = false;
+        const selectedChoice = event.target;
+        console.log(selectedChoice);
+        const selectedAnswer = selectedChoice.dataset["number"]
+
+        if (selectedAnswer == currentQuestion.answer) {
+            alert("Correct 🎉")
+
+        } else alert("Wrong ❌")
+        //calling the getNewQuestion function to switch between questions
+        getNewQuestion();
+    });
+});
 
 
 startGame();
