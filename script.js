@@ -6,7 +6,7 @@ const choices = Array.from(document.querySelectorAll(".choices"));
 
 
 let currentQuestion = {};
-let acceptAnswer = true;
+let acceptAnswer = false;
 
 //Set up the parameters to start the game
 let score = 0;
@@ -56,21 +56,46 @@ startGame = () => {
     questionCounter = 0;
     score = 0;
     availableQuestions = [...questions];
-    console.log( availableQuestions);
+    console.log(availableQuestions);
     getNewQuestion()
 }
-
+//switch between questions
 getNewQuestion = () => {
+    if (availableQuestions.length === 0 || questionCounter > maxQuestions){
+        //go to the final page
+        return window.location.assign("/final.html");
+    }
     questionCounter++;
     const questionIndex = Math.floor(Math.random() * availableQuestions.length)
     currentQuestion = availableQuestions[questionIndex];
+    console.log(currentQuestion);
     question.innerText = currentQuestion.question;
 
-    choices.forEach(choice =>{
+    choices.forEach(choice => {
         const number = choice.dataset["number"]
         choice.innerText = currentQuestion["choice" + number]
     })
+    availableQuestions.splice(questionIndex, 1);
+    console.log(availableQuestions);
+    acceptAnswer = true;
 }
+//loop between each choice
+choices.forEach(choice => {
+     //listen when each choice is click then get the number reference 
+
+    choice.addEventListener("click", event => {
+        if (!acceptAnswer) {
+            return;
+
+            acceptAnswer = false;
+            const selectedChoice = event.target;
+            const selectedAnswer = selectedChoice.dataset["number"]
+            console.log(selectedAnswer);
+//calling the getNewQuestion function to switch between questions
+        } getNewQuestion()
+    })
+})
+
 
 startGame();
 
