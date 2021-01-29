@@ -1,18 +1,12 @@
-
-
 //We start for grabbing the question html elements with the classes question n choices
 const question = document.querySelector(".question");
 const choices = Array.from(document.querySelectorAll(".choices"));
-
-
 let currentQuestion = {};
 let acceptAnswer = false;
-
 //Set up the parameters to start the game
 let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];
-
 //Questions array where we are gonna pull our info
 let questions = [
     {
@@ -40,7 +34,7 @@ let questions = [
         answer: 3,
     },
     {
-        question: "Wich piece in chess is the only animal ?",
+        question: "Which piece in chess is the only animal ?",
         choice1: "bear 🐻",
         choice2: "lion 🦁",
         choice3: "giraffe 🦒",
@@ -49,14 +43,13 @@ let questions = [
     }
 ];
 
-const correctBonus = 25;
+const Bonus = 5;
 const maxQuestions = 4;
 
 startGame = () => {
     questionCounter = 0;
     score = 0;
     availableQuestions = [...questions];
-    console.log(availableQuestions);
     getNewQuestion()
 }
 //switch between questions
@@ -68,7 +61,6 @@ getNewQuestion = () => {
     questionCounter++;
     const questionIndex = Math.floor(Math.random() * availableQuestions.length)
     currentQuestion = availableQuestions[questionIndex];
-    console.log(currentQuestion);
     question.innerText = currentQuestion.question;
 
     choices.forEach(choice => {
@@ -76,10 +68,9 @@ getNewQuestion = () => {
         choice.innerText = currentQuestion["choice" + number]
     })
     availableQuestions.splice(questionIndex, 1);
-    console.log(availableQuestions);
     acceptAnswer = true;
 }
-//loop between each choice
+     //loop between each choice
 choices.forEach(choice => {
      //listen when each choice is click then get the number reference 
 
@@ -89,9 +80,10 @@ choices.forEach(choice => {
 
             acceptAnswer = false;
             const selectedChoice = event.target;
+            console.log(selectedChoice);
             const selectedAnswer = selectedChoice.dataset["number"]
             console.log(selectedAnswer);
-//calling the getNewQuestion function to switch between questions
+      //calling the getNewQuestion function to switch between questions
         } getNewQuestion()
     })
 })
