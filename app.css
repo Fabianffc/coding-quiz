@@ -14,19 +14,31 @@ body {
   width: 100%;
   margin-bottom: 0.5rem;
   font-size:1.8rem;
+  justify-content: center;
 }
-.choice-text {
+.choices {
   background-color: white;
   padding: 1.5rem;
+  margin-left: 0.2rem;
+  border-radius: 2%;
+  border: white solid 0.1rem;
 
 
+}
+.choices:hover{
+  cursor: pointer;
+  box-shadow: #28a745 0 0.4rem 0.9rem;
+  transform: translate(0.1rem);
+  transition: transform 12ms;
 }
 .prefix {
   background-color: #28a745;
   padding: 1.5rem 2.5rem;
-  
-
+  border-radius: 1%;
+  border: white 0.1rem solid;
+  font-weight: 600;
 }
+
 h2{
     color: #28a745;
     font-family: sans-serif;
