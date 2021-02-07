@@ -94,7 +94,6 @@ choices.forEach(choice => {
     });
 });
 
-
 startGame();
 
 
