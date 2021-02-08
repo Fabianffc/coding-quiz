@@ -3,6 +3,8 @@ const question = document.querySelector(".question");
 const choices = Array.from(document.querySelectorAll(".choices"));
 let currentQuestion = {};
 let acceptAnswer = false;
+const timeRemaining = document.querySelector(".time-remaining")
+
 //Set up the parameters to start the game
 let score = 0;
 let questionCounter = 0;
@@ -47,11 +49,31 @@ const Bonus = 5;
 const maxQuestions = 4;
 
 startGame = () => {
+    timeLeft = 60;
     questionCounter = 0;
     score = 0;
     availableQuestions = [...questions];
+    setTime()
     getNewQuestion()
 }
+//timer for application
+function setTime() {
+    //setting up the seconds to 60
+    var timeLeft = 60;
+  
+    var timeInterval = setInterval(function() {
+      timeRemaining.textContent = timeLeft;
+      timeLeft--;
+  //if time reach 0 while playing alert "too slow message" and redirect to initials page
+      if (timeLeft === 0) {
+        timeRemaining.textContent = "";
+        clearInterval(timeInterval);
+        alert("Too slow! Good luck next time!");
+        return window.location.assign("./final.html");
+       }
+  
+    }, 1000);
+  }
 
 //switch between questions
 getNewQuestion = () => {
