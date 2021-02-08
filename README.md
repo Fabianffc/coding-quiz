@@ -1,1 +1,1 @@
-# coding-quiz
+# Chess-Quiz-App  
