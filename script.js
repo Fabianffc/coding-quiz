@@ -4,8 +4,7 @@ const choices = Array.from(document.querySelectorAll(".choices"));
 let currentQuestion = {};
 let acceptAnswer = false;
 const timeRemaining = document.querySelector(".time-remaining");
-const count = 60;
-
+var timeLeft;
 
 //Set up the parameters to start the game
 let questionCounter = 0;
@@ -50,7 +49,6 @@ let questions = [
 
 
 startGame = () => {
-    timeLeft = 60;
     questionCounter = 0;
     availableQuestions = [...questions];
     setTime()
@@ -59,7 +57,7 @@ startGame = () => {
 //timer for application
 function setTime() {
     //setting up the seconds to 60
-    var timeLeft = 60;
+     timeLeft = 60;
 
     var timeInterval = setInterval(function () {
         timeRemaining.textContent = timeLeft;
@@ -107,10 +105,11 @@ choices.forEach(choice => {
         console.log(selectedChoice);
         const selectedAnswer = selectedChoice.dataset["number"]
 
-        if (selectedAnswer == currentQuestion.answer) {
-            alert("Correct 🎉")
-
-        } else alert("Wrong ❌")
+        if (selectedAnswer !== currentQuestion.answer) {
+            alert("Wrong ❌")
+            console.log(timeLeft);
+            timeLeft -= 10
+        } else alert("Correct!!")
         //calling the getNewQuestion function to switch between questions
         getNewQuestion();
     });
